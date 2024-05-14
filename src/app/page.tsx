@@ -38,7 +38,12 @@ export default function Home() {
       </Document>
     );
 
-    await render(<MyDocument />, `${__dirname}/example.pdf`);
+    const buffer = await renderToBuffer(<MyDocument />);
+    const blob = new Blob([buffer as Buffer]);
+
+    const url = URL.createObjectURL(blob);
+
+    return url;
   };
 
   return (
