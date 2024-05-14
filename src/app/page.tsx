@@ -38,12 +38,9 @@ export default function Home() {
       </Document>
     );
 
-    const buffer = await renderToBuffer(<MyDocument />);
-    const blob = new Blob([buffer as Buffer]);
+    const buffer: Buffer = await renderToBuffer(<MyDocument />);
 
-    const url = URL.createObjectURL(blob);
-
-    return url;
+    return 'data:' + 'application/pdf' + ';base64,' + buffer.toString('base64');
   };
 
   return (
